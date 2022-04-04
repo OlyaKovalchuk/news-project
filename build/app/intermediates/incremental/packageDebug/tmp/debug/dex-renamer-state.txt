@@ -1,0 +1,4 @@
+#Mon Apr 04 19:21:08 EEST 2022
+base.0=/Users/olga/Documents/projects/news-project/build/app/intermediates/dex/debug/mergeDexDebug/classes.dex
+renamed.0=classes.dex
+path.0=classes.dex
