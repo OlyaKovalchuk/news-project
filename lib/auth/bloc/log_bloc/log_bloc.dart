@@ -10,8 +10,8 @@ class LogBloc extends Bloc<LoginEvent, LoginState> {
 
   LogBloc(this._userRepository) : super(LogInitial()) {
     on<LoginWithCredentials>((event, emit) =>
-        _mapLoginWithCredentialsPressedToState(
-            emit, password: event.password, email: event.email));
+        _mapLoginWithCredentialsPressedToState(emit,
+            password: event.password, email: event.email));
   }
 
   Future<void> _mapLoginWithCredentialsPressedToState(Emitter emit,

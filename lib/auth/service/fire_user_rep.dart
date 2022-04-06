@@ -11,8 +11,7 @@ abstract class FireUsersDataRepo {
 
 class FireUsersDataRepoImpl implements FireUsersDataRepo {
   final CollectionReference _usersCollection =
-  FirebaseFirestore.instance.collection('users');
-
+      FirebaseFirestore.instance.collection('users');
 
   @override
   Future<List<UserData>> getUsers() async {

@@ -9,15 +9,15 @@ class TextFieldBuilder extends StatelessWidget {
   final String? Function(String? val) validator;
   final Function(String str)? onSubmit;
 
- const TextFieldBuilder(
+  const TextFieldBuilder(
       {Key? key,
-        this.errorText,
-        this.focusNode,
-        required this.controller,
-        required this.textInputType,
-        required this.hint,
-        required this.validator,
-        this.onSubmit})
+      this.errorText,
+      this.focusNode,
+      required this.controller,
+      required this.textInputType,
+      required this.hint,
+      required this.validator,
+      this.onSubmit})
       : super(key: key);
 
   @override
@@ -41,7 +41,7 @@ class TextFieldBuilder extends StatelessWidget {
 }
 
 InputDecoration _inputDecoration(
-    {required String? errorText, required String hint}) =>
+        {required String? errorText, required String hint}) =>
     InputDecoration(
         focusedBorder: _outlineInputDecor(Colors.amberAccent),
         enabledBorder: _outlineInputDecor(Colors.grey),
@@ -50,7 +50,7 @@ InputDecoration _inputDecoration(
         hintStyle: const TextStyle(color: Colors.grey),
         focusedErrorBorder: _outlineInputDecor(Colors.red),
         errorBorder: _outlineInputDecor(Colors.red),
-        errorStyle:const TextStyle(color: Colors.red),
+        errorStyle: const TextStyle(color: Colors.red),
         errorText: errorText);
 
 OutlineInputBorder _outlineInputDecor(Color color) {

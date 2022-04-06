@@ -10,7 +10,7 @@ import 'package:projects/news/screen/main_screen.dart';
 import 'log_screen.dart';
 
 class IntroScreen extends StatelessWidget {
-   IntroScreen({Key? key}) : super(key: key);
+  IntroScreen({Key? key}) : super(key: key);
   final AuthBloc _authBloc = AuthBloc(UserRepositoryImpl());
 
   @override

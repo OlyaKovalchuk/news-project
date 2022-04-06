@@ -33,7 +33,7 @@ class RegScreen extends StatelessWidget {
         child: BlocConsumer(
           bloc: _regBloc,
           builder: (context, state) {
-            if(state is RegSuccess){
+            if (state is RegSuccess) {
               return NewsScreen();
             }
             return Column(
@@ -61,7 +61,7 @@ class RegScreen extends StatelessWidget {
                 ),
                 LogRegButton(
                   onTap: () {
-                    if(_key.currentState!.validate()) {
+                    if (_key.currentState!.validate()) {
                       _regBloc.add(RegWithCredentialsPressed(
                           password: _passwordController.text,
                           email: _emailController.text,

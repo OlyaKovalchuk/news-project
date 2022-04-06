@@ -32,7 +32,7 @@ class LogScreen extends StatelessWidget {
           child: BlocConsumer(
             bloc: _logBloc,
             builder: (context, LoginState state) {
-              if(state is LogSuccess){
+              if (state is LogSuccess) {
                 return NewsScreen();
               }
               return Column(
