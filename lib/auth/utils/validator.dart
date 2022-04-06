@@ -33,4 +33,10 @@ class Validators {
       }
     }
   }
+
+  static String? validName(String? name) {
+    if (name == '') {
+      return 'Name is required';
+    }
+  }
 }
