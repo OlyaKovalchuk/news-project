@@ -5,7 +5,7 @@ import 'package:projects/auth/bloc/auth_bloc/auth_event.dart';
 import 'package:projects/auth/bloc/auth_bloc/auth_state.dart';
 import 'package:projects/auth/screen/reg_screen.dart';
 import 'package:projects/auth/service/user_repository.dart';
-import 'package:projects/news/screen/main_screen.dart';
+import 'package:projects/news/screen/news_screen.dart';
 
 import 'log_screen.dart';
 

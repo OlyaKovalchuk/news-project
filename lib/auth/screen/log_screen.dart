@@ -6,7 +6,7 @@ import 'package:projects/auth/service/user_repository.dart';
 import 'package:projects/auth/widgets/email_password_form.dart';
 import 'package:projects/auth/widgets/log_reg_button.dart';
 
-import '../../news/screen/main_screen.dart';
+import '../../news/screen/news_screen.dart';
 import '../../utils/error_output.dart';
 import '../bloc/log_bloc/log_event.dart';
 
@@ -22,52 +22,52 @@ class LogScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.grey.shade800,
-      appBar: AppBar(
-        backgroundColor: Colors.grey.shade900,
-      ),
-      body: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20.0),
-          child: BlocConsumer(
-            bloc: _logBloc,
-            builder: (context, LoginState state) {
-              if(state is LogSuccess){
-                return NewsScreen();
-              }
-              return Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  const Text(
-                    'Log in',
-                    style: TextStyle(color: Colors.white, fontSize: 25),
-                  ),
-                  EmailAndPasswordForm(
-                    globalKey: _key,
-                    controllerEmail: _emailController,
-                    controllerPassword: _passwordController,
-                    focusNode: _focusNode,
-                  ),
-                  LogRegButton(
-                    onTap: () {
-                      if (_key.currentState!.validate()) {
-                        _logBloc.add(LoginWithCredentials(
-                            password: _passwordController.text,
-                            email: _emailController.text));
-                      }
-                    },
-                    nameButton: 'Sign in',
-                  ),
-                ],
-              );
-            },
-            listener: (BuildContext context, LoginState state) {
-              if (state is LogFailed) {
-                errorOutput(error: state.error, context: context);
-              }
-            },
-          )),
+    return BlocConsumer(
+      listener: (BuildContext context, LoginState state) {
+        if (state is LogFailed) {
+          errorOutput(error: state.error, context: context);
+        }
+      },
+      bloc: _logBloc,
+      builder: (context, LoginState state) {
+        if (state is LogSuccess) {
+          return NewsScreen();
+        }
+        return Scaffold(
+            backgroundColor: Colors.grey.shade800,
+            appBar: AppBar(
+              backgroundColor: Colors.grey.shade900,
+            ),
+            body: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                    const Text(
+                      'Log in',
+                      style: TextStyle(color: Colors.white, fontSize: 25),
+                    ),
+                    EmailAndPasswordForm(
+                      globalKey: _key,
+                      controllerEmail: _emailController,
+                      controllerPassword: _passwordController,
+                      focusNode: _focusNode,
+                    ),
+                    LogRegButton(
+                      onTap: () {
+                        if (_key.currentState!.validate()) {
+                          _logBloc.add(LoginWithCredentials(
+                              password: _passwordController.text,
+                              email: _emailController.text));
+                        }
+                      },
+                      nameButton: 'Sign in',
+                    ),
+                  ],
+                )));
+      },
     );
   }
 }
+

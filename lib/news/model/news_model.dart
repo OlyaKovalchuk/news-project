@@ -1,28 +1,4 @@
-class NewsData {
-  List<Articles>? articles;
-
-  NewsData({this.articles});
-
-  NewsData.fromJson(Map<String, dynamic> json) {
-    if (json['articles'] != null) {
-      articles = <Articles>[];
-      json['articles'].forEach((v) {
-        articles!.add(Articles.fromJson(v));
-      });
-    }
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (articles != null) {
-      data['articles'] = articles!.map((v) => v.toJson()).toList();
-    }
-    return data;
-  }
-}
-
-class Articles {
-  Source? source;
+class NewsData  {
   String? author;
   String? title;
   String? description;
@@ -31,8 +7,8 @@ class Articles {
   String? publishedAt;
   String? content;
 
-  Articles(
-      {this.source,
+  NewsData(
+      {
       this.author,
       this.title,
       this.description,
@@ -41,9 +17,8 @@ class Articles {
       this.publishedAt,
       this.content});
 
-  Articles.fromJson(Map<String, dynamic> json) {
-    source = json['source'] != null ? Source.fromJson(json['source']) : null;
-    author = json['author'];
+  NewsData.fromJson(Map<String, dynamic> json) {
+    author = json['author'] ?? 'Unknown';
     title = json['title'];
     description = json['description'];
     url = json['url'];
@@ -53,10 +28,7 @@ class Articles {
   }
 
   Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    if (source != null) {
-      data['source'] = source!.toJson();
-    }
+    final Map<String, dynamic> data = <String, dynamic>{};
     data['author'] = author;
     data['title'] = title;
     data['description'] = description;
@@ -68,21 +40,3 @@ class Articles {
   }
 }
 
-class Source {
-  String? id;
-  String? name;
-
-  Source({this.id, this.name});
-
-  Source.fromJson(Map<String, dynamic> json) {
-    id = json['id'];
-    name = json['name'];
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = Map<String, dynamic>();
-    data['id'] = id;
-    data['name'] = name;
-    return data;
-  }
-}

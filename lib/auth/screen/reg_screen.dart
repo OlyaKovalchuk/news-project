@@ -8,7 +8,7 @@ import 'package:projects/auth/utils/validator.dart';
 import 'package:projects/auth/widgets/email_password_form.dart';
 import 'package:projects/auth/widgets/log_reg_button.dart';
 import 'package:projects/auth/widgets/text_field_builder.dart';
-import 'package:projects/news/screen/main_screen.dart';
+import 'package:projects/news/screen/news_screen.dart';
 import 'package:projects/utils/error_output.dart';
 
 class RegScreen extends StatelessWidget {
