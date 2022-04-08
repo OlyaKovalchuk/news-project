@@ -1,0 +1,18 @@
+[
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/layout-v21/notification_action.xml",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/layout-v21/notification_action.xml"
+    },
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/layout-v21/notification_template_icon_group.xml",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/layout-v21/notification_template_icon_group.xml"
+    },
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/layout-v21/notification_template_custom_big.xml",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/layout-v21/notification_template_custom_big.xml"
+    },
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/layout-v21/notification_action_tombstone.xml",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/layout-v21/notification_action_tombstone.xml"
+    }
+]

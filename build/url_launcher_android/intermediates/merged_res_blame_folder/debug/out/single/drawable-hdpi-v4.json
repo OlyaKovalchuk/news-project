@@ -1,0 +1,22 @@
+[
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/drawable-hdpi-v4/notification_bg_normal.9.png",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_normal.9.png"
+    },
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/drawable-hdpi-v4/notify_panel_notification_icon_bg.png",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/drawable-hdpi-v4/notify_panel_notification_icon_bg.png"
+    },
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/drawable-hdpi-v4/notification_bg_normal_pressed.9.png",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_normal_pressed.9.png"
+    },
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/drawable-hdpi-v4/notification_bg_low_pressed.9.png",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_low_pressed.9.png"
+    },
+    {
+        "merged": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/drawable-hdpi-v4/notification_bg_low_normal.9.png",
+        "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/drawable-hdpi-v4/notification_bg_low_normal.9.png"
+    }
+]

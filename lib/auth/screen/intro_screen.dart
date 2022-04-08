@@ -5,12 +5,12 @@ import 'package:projects/auth/bloc/auth_bloc/auth_event.dart';
 import 'package:projects/auth/bloc/auth_bloc/auth_state.dart';
 import 'package:projects/auth/screen/reg_screen.dart';
 import 'package:projects/auth/service/user_repository.dart';
-import 'package:projects/news/screen/news_screen.dart';
+import 'package:projects/news/screen/all_news_screen.dart';
 
 import 'log_screen.dart';
 
 class IntroScreen extends StatelessWidget {
-   IntroScreen({Key? key}) : super(key: key);
+  IntroScreen({Key? key}) : super(key: key);
   final AuthBloc _authBloc = AuthBloc(UserRepositoryImpl());
 
   @override
@@ -23,7 +23,7 @@ class IntroScreen extends StatelessWidget {
         if (state is AuthFailed) {
           return const MainScreen();
         } else if (state is AuthOnSuccess) {
-          return NewsScreen();
+          return const AllNewsScreen();
         }
         return Container();
       },
@@ -49,7 +49,8 @@ class MainScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return Scaffold(
+      body: Container(
       width: double.infinity,
       height: double.infinity,
       decoration: const BoxDecoration(
@@ -72,7 +73,7 @@ class MainScreen extends StatelessWidget {
           ),
         ],
       ),
-    );
+    ));
   }
 }
 

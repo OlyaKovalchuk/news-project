@@ -86,6 +86,12 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "favorite_button",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/favorite_button-0.0.4",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "firebase_auth",
       "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/firebase_auth-3.3.12",
       "packageUri": "lib/",
@@ -272,6 +278,54 @@
       "languageVersion": "2.12"
     },
     {
+      "name": "url_launcher",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.20",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_android",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.15",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_ios",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_ios-6.0.15",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_linux",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_linux-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_macos",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_macos-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_platform_interface",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_platform_interface-2.0.5",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_web",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.9",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
+      "name": "url_launcher_windows",
+      "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_windows-3.0.0",
+      "packageUri": "lib/",
+      "languageVersion": "2.12"
+    },
+    {
       "name": "uuid",
       "rootUri": "file:///Users/olga/Documents/Developer/flutter/.pub-cache/hosted/pub.dartlang.org/uuid-3.0.6",
       "packageUri": "lib/",
@@ -290,7 +344,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2022-04-06T18:40:48.138746Z",
+  "generated": "2022-04-08T14:49:53.239573Z",
   "generator": "pub",
   "generatorVersion": "2.16.2"
 }

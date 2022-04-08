@@ -1,31 +1,25 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:projects/auth/model/user_model.dart';
 
 abstract class FireUsersDataRepo {
-  Future<List<UserData>> getUsers();
+  Future<UserData?> getUser();
 
-  Future<UserData?> getUser(String uid);
+  Future<void> signOut();
 
-  setUser(UserData userData);
+  Future<void> setUser(UserData userData);
 }
 
 class FireUsersDataRepoImpl implements FireUsersDataRepo {
   final CollectionReference _usersCollection =
-  FirebaseFirestore.instance.collection('users');
+      FirebaseFirestore.instance.collection('users');
 
-
-  @override
-  Future<List<UserData>> getUsers() async {
-    QuerySnapshot usersSnap = await _usersCollection.get();
-    List usersList = usersSnap.docs
-        .map((e) => UserData.fromMap(e.data() as Map<String, dynamic>))
-        .toList();
-    return usersList as List<UserData>;
-  }
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
 
   @override
-  Future<UserData?> getUser(String uid) async {
-    DocumentSnapshot documentSnapshot = await _usersCollection.doc(uid).get();
+  Future<UserData?> getUser() async {
+    DocumentSnapshot documentSnapshot =
+        await _usersCollection.doc(_firebaseAuth.currentUser!.uid).get();
     if (documentSnapshot.exists) {
       return UserData.fromMap(documentSnapshot.data() as Map<String, dynamic>);
     } else {
@@ -34,16 +28,20 @@ class FireUsersDataRepoImpl implements FireUsersDataRepo {
   }
 
   @override
-  setUser(UserData userData) async {
+  Future<void> setUser(UserData userData) async {
     print(userData);
     try {
-      // yes
       await _usersCollection.doc(userData.uid).set(userData.onlyTextMap());
-
-      // Prevent errors on large or corrupted data
       await _usersCollection.doc(userData.uid).update(userData.toMap());
     } catch (e) {
       print(e);
     }
+  }
+
+  @override
+  Future signOut() async {
+    await Future.wait([
+      _firebaseAuth.signOut(),
+    ]);
   }
 }

@@ -6,7 +6,7 @@ import 'package:projects/auth/service/user_repository.dart';
 import 'package:projects/auth/widgets/email_password_form.dart';
 import 'package:projects/auth/widgets/log_reg_button.dart';
 
-import '../../news/screen/news_screen.dart';
+import '../../news/screen/all_news_screen.dart';
 import '../../utils/error_output.dart';
 import '../bloc/log_bloc/log_event.dart';
 
@@ -31,7 +31,7 @@ class LogScreen extends StatelessWidget {
       bloc: _logBloc,
       builder: (context, LoginState state) {
         if (state is LogSuccess) {
-          return NewsScreen();
+          return const AllNewsScreen();
         }
         return Scaffold(
             backgroundColor: Colors.grey.shade800,

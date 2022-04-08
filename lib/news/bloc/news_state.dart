@@ -8,12 +8,14 @@ abstract class NewsState extends Equatable {
 
 class InitialState extends NewsState {}
 
-class LoadingState extends NewsState{}
+class LoadingState extends NewsState {}
 
-class SuccessState extends NewsState{
- final List<NewsData> newsData;
+class SuccessState extends NewsState {
+  final List<NewsData> newsData;
 
- SuccessState(this.newsData);
+  final List<bool> isFavorite;
+
+  SuccessState(this.newsData, this.isFavorite);
 }
 
-class ErrorState extends NewsState{}
+class ErrorState extends NewsState {}
