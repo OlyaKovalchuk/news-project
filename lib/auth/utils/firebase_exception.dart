@@ -1,42 +1,37 @@
-const ERROR_WEAK_PASSWORD = 'weak-password';
-const ERROR_EMAIL_ALREADY_IN_USE = 'email-already-exists';
-const ERROR_UID_ALREADY_EXISTS = 'auth/uid-already-exists';
-const ERROR_USER_NOT_FOUND = 'user-not-found';
-const ERROR_INVALID_PASSWORD = 'invalid-password';
-const ERROR_WRONG_PASSWORD = 'wrong-password';
-const ERROR_INVALID_EMAIL = 'invalid-email';
-const ERROR_TOO_MANY_REQUEST = 'too-many-requests';
-const ERROR_UNKNOWN = 'unknown';
+const errorWeakPassword = 'weak-password';
+const errorEmailAlreadyInUse = 'email-already-exists';
+const errorUidAlreadyExists = 'auth/uid-already-exists';
+const errorUserNotFound = 'user-not-found';
+const errorInvalidPassword = 'invalid-password';
+const errorWrongPassword = 'wrong-password';
+const errorInvalidEmail = 'invalid-email';
+const errorTooManyRequest = 'too-many-requests';
+const errorUnknown = 'unknown';
 
 checkError(String exception) {
   String? error;
-  if (exception == ERROR_USER_NOT_FOUND) {
-    print('No user found for that email.');
+  if (exception == errorUserNotFound) {
     error = 'No user found for that email.';
     return error;
-  } else if (exception == ERROR_WRONG_PASSWORD) {
-    print('Wrong password provided for that user.');
+  } else if (exception == errorWrongPassword) {
     error = 'The password is wrong. Please enter correct password.';
     return error;
-  } else if (exception == ERROR_UID_ALREADY_EXISTS) {
-    print('The account already exists for that uid.');
+  } else if (exception == errorUidAlreadyExists) {
     error = 'The account already exists for that uid.';
     return error;
-  } else if (exception == ERROR_EMAIL_ALREADY_IN_USE) {
-    print('The account already exists for that email.');
+  } else if (exception == errorEmailAlreadyInUse) {
     error = 'The account already exists for that email.';
     return error;
-  } else if (exception == ERROR_WEAK_PASSWORD) {
-    print('The password is too weak.');
+  } else if (exception == errorWeakPassword) {
     error = 'The account already exists for that email.';
     return error;
-  } else if (exception == ERROR_INVALID_EMAIL) {
+  } else if (exception == errorInvalidEmail) {
     error = 'The email address is badly formatted.';
     return error;
-  } else if (exception == ERROR_TOO_MANY_REQUEST) {
+  } else if (exception == errorTooManyRequest) {
     error = 'Too many request.  Please try later';
     return error;
-  } else if (exception == ERROR_INVALID_PASSWORD) {
+  } else if (exception == errorInvalidPassword) {
     error = 'The password is badly formatted.';
     return error;
   } else {

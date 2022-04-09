@@ -9,7 +9,7 @@ abstract class AuthState extends Equatable {
 class AuthInitial extends AuthState {}
 
 class AuthOnSuccess extends AuthState {
-  late final User? user;
+  final User? user;
 
   AuthOnSuccess({required this.user});
 

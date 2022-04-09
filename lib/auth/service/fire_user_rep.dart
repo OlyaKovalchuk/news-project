@@ -29,12 +29,11 @@ class FireUsersDataRepoImpl implements FireUsersDataRepo {
 
   @override
   Future<void> setUser(UserData userData) async {
-    print(userData);
     try {
       await _usersCollection.doc(userData.uid).set(userData.onlyTextMap());
       await _usersCollection.doc(userData.uid).update(userData.toMap());
     } catch (e) {
-      print(e);
+      throw Exception(e);
     }
   }
 

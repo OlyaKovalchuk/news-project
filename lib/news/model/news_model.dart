@@ -1,6 +1,3 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:projects/favorite_news/model/fav_news_model.dart';
-
 class NewsData {
   String? author;
   String? title;

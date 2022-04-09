@@ -25,7 +25,6 @@ class RegBloc extends Bloc<RegEvent, RegState> {
 
       emit(RegSuccess());
     } on FirebaseAuthException catch (e) {
-      print(e.code);
       emit(RegFailed(checkError(e.code)));
     }
   }

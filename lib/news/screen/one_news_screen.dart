@@ -55,8 +55,7 @@ class OneNewsScreen extends StatelessWidget {
                 height: 30,
               ),
               PublishedText(
-                publishedAt:
-                    DateTime.parse(newsData.publishedAt!.toString()),
+                publishedAt: DateTime.parse(newsData.publishedAt!.toString()),
               ),
               const SizedBox(
                 height: 10,
@@ -88,18 +87,20 @@ class TitleText extends StatelessWidget {
       child: Column(
         children: [
           Text(author,
-              style: const TextStyle(
-                  color: Colors.amberAccent,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 20),
-              textAlign: TextAlign.center),
+              style: Theme.of(context)
+                  .textTheme
+                  .subtitle1!
+                  .copyWith(fontWeight: FontWeight.bold)),
           const SizedBox(
             height: 10,
           ),
           Text(
             'Source: $source',
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.white, fontSize: 13),
+            style: Theme.of(context)
+                .textTheme
+                .bodyText1!
+                .copyWith(fontSize: 13, fontWeight: FontWeight.normal),
           ),
           const SizedBox(
             height: 15,
@@ -107,7 +108,7 @@ class TitleText extends StatelessWidget {
           Text(
             title,
             textAlign: TextAlign.center,
-            style: const TextStyle(color: Colors.white, fontSize: 15),
+            style: Theme.of(context).textTheme.bodyText1,
           ),
         ],
       ),
@@ -141,13 +142,18 @@ class DescriptionText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text.rich(TextSpan(children: <TextSpan>[
-      const TextSpan(
-        text: 'Description: ',
-        style: TextStyle(color: Colors.amberAccent, fontSize: 12),
-      ),
+      TextSpan(
+          text: 'Description: ',
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2!
+              .copyWith(fontSize: 13, fontWeight: FontWeight.normal)),
       TextSpan(
           text: description,
-          style: const TextStyle(color: Colors.white, fontSize: 12)),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(fontSize: 12, fontWeight: FontWeight.normal)),
     ]));
   }
 }
@@ -162,13 +168,18 @@ class PublishedText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text.rich(TextSpan(children: <TextSpan>[
-      const TextSpan(
-        text: 'Published: ',
-        style: TextStyle(color: Colors.amberAccent),
-      ),
+      TextSpan(
+          text: 'Published: ',
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2!
+              .copyWith(fontWeight: FontWeight.normal)),
       TextSpan(
           text: dateTime.format(publishedAt),
-          style: const TextStyle(color: Colors.white)),
+          style: Theme.of(context)
+              .textTheme
+              .bodyText1!
+              .copyWith(fontWeight: FontWeight.normal)),
     ]));
   }
 }
@@ -182,16 +193,21 @@ class LinkOfNews extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        const Text(
-          'Follow the link: ',
-          style: TextStyle(color: Colors.amberAccent),
-        ),
+        Text('Follow the link: ',
+            style: Theme.of(context)
+                .textTheme
+                .subtitle2!
+                .copyWith(fontWeight: FontWeight.normal)),
         Expanded(
           child: TextButton(
               onPressed: () {
                 _launchURL(url);
               },
-              child: Text(url, style: const TextStyle(color: Colors.white))),
+              child: Text(url,
+                  style: Theme.of(context)
+                      .textTheme
+                      .bodyText1!
+                      .copyWith(fontSize: 13, fontWeight: FontWeight.normal))),
         )
       ],
     );

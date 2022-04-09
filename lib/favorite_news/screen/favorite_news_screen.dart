@@ -4,7 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:projects/favorite_news/bloc/fav_news_bloc.dart';
 import 'package:projects/favorite_news/bloc/fav_news_state.dart';
 import 'package:projects/favorite_news/service/fav_news_service.dart';
+import 'package:projects/widgets/empty_view.dart';
 import 'package:projects/news/screen/all_news_screen.dart';
+import 'package:projects/widgets/app_bar_builder.dart';
+import 'package:projects/widgets/error_view.dart';
+import 'package:projects/widgets/loading_view.dart';
 
 import '../bloc/fav_news_event.dart';
 
@@ -17,39 +21,32 @@ class FavoriteNewsScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.grey.shade800,
-      appBar: AppBar(
+      appBar: appBarBuilder(
         leading: const BackButton(),
-        title: const Text(
-          'Favorite News',
-          style: TextStyle(color: Colors.white),
-        ),
-        centerTitle: true,
-        backgroundColor: Colors.grey.shade900,
+        title: 'Favorite News',
       ),
-      body: BlocBuilder(
-          bloc: _favNewsBloc..add(GetFavNews()),
-          builder: (context, state) {
-            if (state is SuccessState) {
-              if (state.favNewsData != null) {
-                return NewsListTile(
-                  newsData: state.favNewsData!,
-                  isFav: state.isFavorite!,
-                );
-              } else {
-                return const SizedBox(
-                  width: 300,
-                  height: 300,
-                  child: Center(
-                    child: Text(
-                      'You don\'t have favorites news yet!',
-                      style: TextStyle(color: Colors.white, fontSize: 15),
-                    ),
-                  ),
-                );
-              }
-            }
-            return Container();
-          }),
+      body: SizedBox(
+          child: BlocBuilder(
+              bloc: _favNewsBloc..add(GetFavNews()),
+              builder: (context, state) {
+                if (state is SuccessState) {
+                  if (state.favNewsData!.isNotEmpty) {
+                    return NewsListTile(
+                      newsData: state.favNewsData!,
+                      isFav: state.isFavorite!,
+                    );
+                  } else {
+                    return const EmptyView(
+                      text: 'You don\'t have favorites news yet!',
+                    );
+                  }
+                } else if (state is LoadingState) {
+                  return const LoadingView();
+                } else if (state is FailedState) {
+                  return const ErrorView();
+                }
+                return const ErrorView();
+              })),
     );
   }
 }

@@ -1,9 +1,6 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projects/favorite_news/bloc/fav_news_bloc.dart';
-import 'package:projects/favorite_news/bloc/fav_news_event.dart';
-import 'package:projects/favorite_news/repository/fav_news_repo.dart';
+import 'package:projects/auth/widgets/text_field_builder.dart';
 import 'package:projects/favorite_news/screen/favorite_news_screen.dart';
 import 'package:projects/favorite_news/service/fav_news_service.dart';
 import 'package:projects/favorite_news/widget/fav_news_button.dart';
@@ -13,6 +10,11 @@ import 'package:projects/news/bloc/news_state.dart';
 import 'package:projects/news/model/news_model.dart';
 import 'package:projects/news/repository/news_repository.dart';
 import 'package:projects/news/screen/one_news_screen.dart';
+import 'package:projects/theme/theme_colors.dart';
+import 'package:projects/widgets/app_bar_builder.dart';
+import 'package:projects/widgets/empty_view.dart';
+import 'package:projects/widgets/error_view.dart';
+import 'package:projects/widgets/loading_view.dart';
 
 import '../../profile/screen/profile_screen.dart';
 
@@ -31,28 +33,12 @@ class _AllNewsScreenState extends State<AllNewsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.grey.shade800,
-        appBar: AppBar(
-          leading: IconButton(
-            icon: const Icon(
-              Icons.bookmarks_rounded,
-              color: Colors.grey,
-            ),
-            onPressed: () {
-              Navigator.push(context,
-                  MaterialPageRoute(builder: (_) => FavoriteNewsScreen()));
-            },
-          ),
-          actions: const [
-            ToProfileButton(),
-          ],
-          automaticallyImplyLeading: false,
-          backgroundColor: Colors.grey.shade900,
-          centerTitle: true,
-          title: const Text(
-            'News Page',
-            style: TextStyle(color: Colors.white),
-          ),
-        ),
+        appBar: appBarBuilder(
+            leading: const ToFavoriteButton(),
+            actions: const [
+              ToProfileButton(),
+            ],
+            title: 'News Page'),
         body: Column(
           children: [
             SearchNewsField(
@@ -62,24 +48,26 @@ class _AllNewsScreenState extends State<AllNewsScreen> {
               bloc: _newsBloc..add(GetAllNewsEvent()),
               builder: (context, state) {
                 if (state is SuccessState) {
-                  return Expanded(
-                    child: NewsListTile(
-                      newsData: state.newsData,
-                      isFav: state.isFavorite,
-                    ),
-                  );
+                  if (state.newsData.isNotEmpty) {
+                    return Expanded(
+                      child: NewsListTile(
+                        newsData: state.newsData,
+                        isFav: state.isFavorite,
+                      ),
+                    );
+                  } else {
+                    return const Expanded(
+                      child: EmptyView(
+                        text: 'No such news',
+                      ),
+                    );
+                  }
                 } else if (state is LoadingState) {
-                  return const CircularProgressIndicator(
-                    color: Colors.amberAccent,
-                  );
+                  return const Expanded(child: LoadingView());
                 } else if (state is ErrorState) {
-                  return const Center(
-                      child: Text(
-                    'Oops..Something goes wrong',
-                    style: TextStyle(color: Colors.white),
-                  ));
+                  return const Expanded(child: ErrorView());
                 }
-                return Container();
+                return const Expanded(child: ErrorView());
               },
             ),
           ],
@@ -99,29 +87,11 @@ class SearchNewsField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.all(8.0),
-      child: TextField(
-        focusNode: _focusNode,
+      child: TextFieldBuilder(
+        hint: 'Enter keywords',
         controller: _controller,
-        style: const TextStyle(color: Colors.white),
-        decoration: InputDecoration(
-          hintText: 'Enter keywords',
-          focusedBorder: OutlineInputBorder(
-            borderSide: const BorderSide(
-              width: 2,
-              color: Colors.grey,
-            ),
-            borderRadius: BorderRadius.circular(30),
-          ),
-          enabledBorder: OutlineInputBorder(
-            borderRadius: BorderRadius.circular(30),
-            borderSide: BorderSide(
-              width: 2,
-              color: Colors.grey.shade900,
-            ),
-          ),
-          contentPadding: const EdgeInsets.only(left: 15),
-        ),
-        onSubmitted: (keywords) {
+        focusNode: _focusNode,
+        onSubmit: (keywords) {
           _focusNode.consumeKeyboardToken();
           if (keywords != '') {
             newsBloc.add(SearchByContentEvent(keywords));
@@ -147,30 +117,28 @@ class NewsListTile extends StatelessWidget {
       shrinkWrap: true,
       itemCount: newsData.length,
       itemBuilder: (BuildContext context, int index) {
+        NewsData _newsData = newsData[index];
         return Card(
             shape:
                 RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
-            color: Colors.black26,
+            color: cardColor,
             child: Padding(
-              padding: const EdgeInsets.all(4.0),
+              padding: const EdgeInsets.all(5.0),
               child: ListTile(
-                  minLeadingWidth: 10,
                   leading: DetailsButton(
-                    newsData: newsData[index],
+                    newsData: _newsData,
                   ),
-                  tileColor: Colors.transparent,
                   title: Text(
-                    newsData[index].source!.name! +
-                        ' | ' +
-                        newsData[index].author!,
-                    style: const TextStyle(color: Colors.white),
+                    _newsData.source!.name! + ' | ' + _newsData.author!,
+                    style: Theme.of(context)
+                        .textTheme
+                        .bodyText1!
+                        .copyWith(fontSize: 16),
                   ),
-                  subtitle: Text(
-                    newsData[index].title!,
-                    style: const TextStyle(color: Colors.grey),
-                  ),
+                  subtitle: Text(_newsData.title!,
+                      style: Theme.of(context).textTheme.bodyText2),
                   trailing: FavIconButton(
-                    newsData: newsData[index],
+                    newsData: _newsData,
                     isFavorited: isFav[index],
                   )),
             ));
@@ -193,10 +161,11 @@ class DetailsButton extends StatelessWidget {
             MaterialPageRoute(
                 builder: (context) => OneNewsScreen(newsData: newsData)));
       },
-      child: const Text(
-        'Details',
-        style: TextStyle(color: Colors.amber),
-      ),
+      child: Text('Details',
+          style: Theme.of(context)
+              .textTheme
+              .subtitle2!
+              .copyWith(fontWeight: FontWeight.normal)),
     );
   }
 }
@@ -211,9 +180,23 @@ class ToProfileButton extends StatelessWidget {
           Navigator.push(
               context, MaterialPageRoute(builder: (_) => ProfileScreen()));
         },
-        icon: const Icon(
-          Icons.person,
-          color: Colors.grey,
-        ));
+        icon:
+            Icon(Icons.person, color: Theme.of(context).colorScheme.onSurface));
+  }
+}
+
+class ToFavoriteButton extends StatelessWidget {
+  const ToFavoriteButton({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return IconButton(
+      icon: Icon(Icons.bookmarks_rounded,
+          color: Theme.of(context).colorScheme.onSurface),
+      onPressed: () {
+        Navigator.push(
+            context, MaterialPageRoute(builder: (_) => FavoriteNewsScreen()));
+      },
+    );
   }
 }

@@ -20,7 +20,6 @@ class LogBloc extends Bloc<LoginEvent, LoginState> {
       await _userRepository.signInWithCredentials(email, password);
       emit(LogSuccess());
     } on FirebaseAuthException catch (e) {
-      print('Error auth: ${e.code}');
       emit(LogFailed(checkError(e.code)));
     }
   }

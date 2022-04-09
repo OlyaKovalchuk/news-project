@@ -1,4 +1,3 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:projects/favorite_news/model/fav_news_model.dart';
 import 'package:projects/favorite_news/repository/fav_news_repo.dart';
 import 'package:projects/news/model/news_model.dart';
@@ -23,9 +22,8 @@ class FavNewsServiceImpl implements FavNewsService {
           await _favoriteNewsRepoImpl.getUsersFavNews();
       return _favNewsData;
     } catch (e) {
-      print('Get Fav News: $e');
+      throw Exception(e);
     }
-    return null;
   }
 
   @override
@@ -42,11 +40,10 @@ class FavNewsServiceImpl implements FavNewsService {
       FavoriteNewsData? _favoriteNews = await getFavNews();
       if (_favoriteNews != null && !_favoriteNews.newsData.contains(news)) {
         _favoriteNews.newsData.add(news);
-        print(news.title);
         await _favoriteNewsRepoImpl.updateFavoriteNews(_favoriteNews);
       }
     } catch (e) {
-      print('Update: $e');
+      return Future.error(e);
     }
   }
 
@@ -59,7 +56,7 @@ class FavNewsServiceImpl implements FavNewsService {
         await _favoriteNewsRepoImpl.updateFavoriteNews(_favoriteNews);
       }
     } catch (e) {
-      print('Delete: $e');
+      return Future.error(e);
     }
   }
 }

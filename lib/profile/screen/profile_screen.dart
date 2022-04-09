@@ -6,6 +6,8 @@ import 'package:projects/auth/widgets/log_reg_button.dart';
 import 'package:projects/profile/bloc/profile_bloc.dart';
 import 'package:projects/profile/bloc/profile_event.dart';
 import 'package:projects/profile/bloc/profile_state.dart';
+import 'package:projects/widgets/error_view.dart';
+import 'package:projects/widgets/loading_view.dart';
 
 import '../../auth/model/user_model.dart';
 
@@ -31,8 +33,15 @@ class ProfileScreen extends StatelessWidget {
                 userData: state.userData!,
                 profileBloc: _profileBloc,
               );
+            } else if (state is LoadingState) {
+              return const LoadingView();
+            } else if (state is ErrorState) {
+              return Column(children: [
+                const ErrorView(),
+                SignOutButton(profileBloc: _profileBloc)
+              ]);
             }
-            return SignOutButton(profileBloc: _profileBloc);
+            return Container();
           },
         ));
   }
@@ -92,11 +101,11 @@ class ImageAndName extends StatelessWidget {
           const SizedBox(
             height: 30,
           ),
-          Text(
-            name,
-            style: const TextStyle(
-                fontSize: 30, color: Colors.white, fontWeight: FontWeight.bold),
-          ),
+          Text(name,
+              style: Theme.of(context)
+                  .textTheme
+                  .bodyText1!
+                  .copyWith(fontSize: 30)),
         ],
       ),
     );
@@ -111,13 +120,16 @@ class EmailText extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Text.rich(TextSpan(children: <TextSpan>[
-      const TextSpan(
+      TextSpan(
         text: 'Email:  ',
-        style: TextStyle(color: Colors.amberAccent, fontSize: 18),
+        style: Theme.of(context).textTheme.subtitle2!.copyWith(fontSize: 18),
       ),
       TextSpan(
         text: email,
-        style: const TextStyle(color: Colors.white, fontSize: 18),
+        style: Theme.of(context)
+            .textTheme
+            .bodyText1!
+            .copyWith(fontSize: 18, fontWeight: FontWeight.normal),
       ),
     ]));
   }

@@ -21,10 +21,8 @@ class LogRegButton extends StatelessWidget {
         ),
         child: Text(
           nameButton,
-          style: const TextStyle(
-              fontSize: 20, color: Colors.white, fontWeight: FontWeight.bold),
+          style: Theme.of(context).textTheme.bodyText1!.copyWith(fontSize: 20),),
         ),
-      ),
     );
   }
 }

@@ -20,7 +20,6 @@ class AuthBloc extends Bloc<AuthEvent, AuthState> {
     final isSignedIn = await _userRepository.isSignedIn();
     if (isSignedIn) {
       final user = await _userRepository.getUser();
-      print(user);
       emit(AuthOnSuccess(user: user));
     } else {
       emit(AuthFailed());

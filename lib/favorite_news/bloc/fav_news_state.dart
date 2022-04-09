@@ -1,5 +1,4 @@
 import 'package:equatable/equatable.dart';
-import 'package:projects/favorite_news/model/fav_news_model.dart';
 import 'package:projects/news/model/news_model.dart';
 
 abstract class FavNewsState extends Equatable {
@@ -19,6 +18,9 @@ class SuccessState extends FavNewsState {
     this.favNewsData,
     this.isFavorite,
   });
+
+  @override
+  List<Object?> get props => [isFavorite, favNewsData];
 }
 
 class FailedState extends FavNewsState {}

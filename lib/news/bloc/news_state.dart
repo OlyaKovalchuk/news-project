@@ -16,6 +16,9 @@ class SuccessState extends NewsState {
   final List<bool> isFavorite;
 
   SuccessState(this.newsData, this.isFavorite);
+
+  @override
+  List<Object?> get props => [newsData, isFavorite];
 }
 
 class ErrorState extends NewsState {}

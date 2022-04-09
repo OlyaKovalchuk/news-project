@@ -70,4 +70,3 @@ class LogScreen extends StatelessWidget {
     );
   }
 }
-

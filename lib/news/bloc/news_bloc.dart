@@ -1,5 +1,4 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:projects/favorite_news/repository/fav_news_repo.dart';
 import 'package:projects/favorite_news/service/fav_news_service.dart';
 import 'package:projects/news/bloc/news_event.dart';
 import 'package:projects/news/bloc/news_state.dart';
@@ -24,7 +23,6 @@ class NewsBloc extends Bloc<NewsEvent, NewsState> {
       List<bool> isFav = await _favWordsServiceImpl.isFavNews(newsData);
       emit(SuccessState(newsData, isFav));
     } catch (e) {
-      print(e);
       emit(ErrorState());
     }
   }
