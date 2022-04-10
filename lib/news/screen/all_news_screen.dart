@@ -12,9 +12,9 @@ import 'package:projects/news/repository/news_repository.dart';
 import 'package:projects/news/screen/one_news_screen.dart';
 import 'package:projects/theme/theme_colors.dart';
 import 'package:projects/widgets/app_bar_builder.dart';
-import 'package:projects/widgets/empty_view.dart';
-import 'package:projects/widgets/error_view.dart';
-import 'package:projects/widgets/loading_view.dart';
+import 'package:projects/widgets/views/empty_view.dart';
+import 'package:projects/widgets/views/error_view.dart';
+import 'package:projects/widgets/views/loading_view.dart';
 
 import '../../profile/screen/profile_screen.dart';
 
@@ -67,7 +67,7 @@ class _AllNewsScreenState extends State<AllNewsScreen> {
                 } else if (state is ErrorState) {
                   return const Expanded(child: ErrorView());
                 }
-                return const Expanded(child: ErrorView());
+                return Container();
               },
             ),
           ],

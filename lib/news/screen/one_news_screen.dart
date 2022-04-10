@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:projects/news/model/news_model.dart';
-import 'package:url_launcher/url_launcher.dart';
+
+import '../utils/launch_url.dart';
 
 class OneNewsScreen extends StatelessWidget {
   final NewsData newsData;
@@ -26,14 +27,7 @@ class OneNewsScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
                   if (newsData.urlToImage != null)
-                    Image.network(
-                      newsData.urlToImage!,
-                      width: 170,
-                      fit: BoxFit.contain,
-                    ),
-                  const SizedBox(
-                    width: 20,
-                  ),
+                    ImageView(url: newsData.urlToImage!),
                   TitleText(
                     author: newsData.author!,
                     title: newsData.title!,
@@ -45,12 +39,12 @@ class OneNewsScreen extends StatelessWidget {
                 height: 30,
               ),
               DescriptionText(
-                description: newsData.description ?? '',
+                description: newsData.description!,
               ),
               const SizedBox(
                 height: 15,
               ),
-              ContentText(content: newsData.content ?? ''),
+              ContentText(content: newsData.content!),
               const SizedBox(
                 height: 30,
               ),
@@ -65,6 +59,28 @@ class OneNewsScreen extends StatelessWidget {
           ),
         ),
       ),
+    );
+  }
+}
+
+class ImageView extends StatelessWidget {
+  final String url;
+
+  const ImageView({Key? key, required this.url}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        Image.network(
+          url,
+          width: 170,
+          fit: BoxFit.contain,
+        ),
+        const SizedBox(
+          width: 20,
+        ),
+      ],
     );
   }
 }
@@ -201,7 +217,7 @@ class LinkOfNews extends StatelessWidget {
         Expanded(
           child: TextButton(
               onPressed: () {
-                _launchURL(url);
+                launchURL(url);
               },
               child: Text(url,
                   style: Theme.of(context)
@@ -211,13 +227,5 @@ class LinkOfNews extends StatelessWidget {
         )
       ],
     );
-  }
-
-  _launchURL(String url) async {
-    if (await canLaunch(url)) {
-      await launch(url, forceWebView: true);
-    } else {
-      throw 'Could not launch $url';
-    }
   }
 }

@@ -6,8 +6,8 @@ import 'package:projects/auth/widgets/log_reg_button.dart';
 import 'package:projects/profile/bloc/profile_bloc.dart';
 import 'package:projects/profile/bloc/profile_event.dart';
 import 'package:projects/profile/bloc/profile_state.dart';
-import 'package:projects/widgets/error_view.dart';
-import 'package:projects/widgets/loading_view.dart';
+import 'package:projects/widgets/views/error_view.dart';
+import 'package:projects/widgets/views/loading_view.dart';
 
 import '../../auth/model/user_model.dart';
 

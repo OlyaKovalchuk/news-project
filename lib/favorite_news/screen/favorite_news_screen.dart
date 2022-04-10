@@ -4,11 +4,11 @@ import 'package:intl/intl.dart';
 import 'package:projects/favorite_news/bloc/fav_news_bloc.dart';
 import 'package:projects/favorite_news/bloc/fav_news_state.dart';
 import 'package:projects/favorite_news/service/fav_news_service.dart';
-import 'package:projects/widgets/empty_view.dart';
+import 'package:projects/widgets/views/empty_view.dart';
 import 'package:projects/news/screen/all_news_screen.dart';
 import 'package:projects/widgets/app_bar_builder.dart';
-import 'package:projects/widgets/error_view.dart';
-import 'package:projects/widgets/loading_view.dart';
+import 'package:projects/widgets/views/error_view.dart';
+import 'package:projects/widgets/views/loading_view.dart';
 
 import '../bloc/fav_news_event.dart';
 
@@ -45,7 +45,7 @@ class FavoriteNewsScreen extends StatelessWidget {
                 } else if (state is FailedState) {
                   return const ErrorView();
                 }
-                return const ErrorView();
+                return Container();
               })),
     );
   }

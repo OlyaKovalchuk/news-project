@@ -15,4 +15,7 @@ class RegFailed extends RegState {
   final String error;
 
   RegFailed(this.error);
+
+  @override
+  List<Object?> get props => [error];
 }

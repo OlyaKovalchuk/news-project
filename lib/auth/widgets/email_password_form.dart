@@ -41,6 +41,7 @@ class EmailAndPasswordForm extends StatelessWidget {
               controller: controllerPassword,
               textInputType: TextInputType.visiblePassword,
               hint: 'Password',
+              obscureText: true,
               onSubmit: (password) {
                 focusNode.consumeKeyboardToken();
               }),

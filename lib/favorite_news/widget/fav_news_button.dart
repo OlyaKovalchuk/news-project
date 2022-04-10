@@ -10,7 +10,8 @@ class FavIconButton extends StatefulWidget {
   final NewsData newsData;
   final bool isFavorited;
 
-  const FavIconButton({Key? key, required this.newsData, required this.isFavorited})
+  const FavIconButton(
+      {Key? key, required this.newsData, required this.isFavorited})
       : super(key: key);
 
   @override
@@ -36,8 +37,7 @@ class _FavIconButtonState extends State<FavIconButton> {
                       _favNewsBloc.add(SetFavNews(widget.newsData));
                     } else {
                       _favNewsBloc.add(DeleteFavNews(widget.newsData));
-                      setState(() {
-                      });
+                      setState(() {});
                     }
                   });
             }));

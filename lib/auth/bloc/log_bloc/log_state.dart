@@ -15,4 +15,7 @@ class LogFailed extends LoginState {
   final String error;
 
   LogFailed(this.error);
+
+  @override
+  List<Object?> get props => [error];
 }

@@ -24,17 +24,18 @@ class UserRepositoryImpl implements UserRepository {
   @override
   Future signInWithCredentials(String email, String password) async {
     try {
-      await _firebaseAuth
-          .signInWithEmailAndPassword(email: email, password: password);
-    }on FirebaseAuthException catch(e){
+      await _firebaseAuth.signInWithEmailAndPassword(
+          email: email, password: password);
+    } on FirebaseAuthException catch (e) {
       return Future.error(e);
     }
   }
 
   @override
-  Future<void> singUp({required String email,
-    required String name,
-    required String password}) async {
+  Future<void> singUp(
+      {required String email,
+      required String name,
+      required String password}) async {
     try {
       UserCredential userCredential = await _firebaseAuth
           .createUserWithEmailAndPassword(email: email, password: password);
@@ -68,7 +69,7 @@ class UserRepositoryImpl implements UserRepository {
               'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_1280.png',
         );
         FavoriteNewsData _favNewsData =
-        FavoriteNewsData(newsData: [], uid: _userData.uid);
+            FavoriteNewsData(newsData: [], uid: _userData.uid);
         _favoriteNewsRepo.setFavoriteWord(_favNewsData);
         _fireUsersDataRepo.setUser(_userData);
       }

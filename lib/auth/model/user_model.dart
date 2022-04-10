@@ -9,17 +9,17 @@ class UserData {
 
   UserData(
       {String? uid,
-        required this.name,
-        required this.email,
-        required this.photoURL})
+      required this.name,
+      required this.email,
+      required this.photoURL})
       : uid = uid ?? const Uuid().v1();
 
   UserData copyWith(
       {String? uid,
-        String? name,
-        String? email,
-        List? favoriteWord,
-        String? photoURL}) {
+      String? name,
+      String? email,
+      List? favoriteWord,
+      String? photoURL}) {
     return UserData(
         uid: uid ?? this.uid,
         name: name ?? this.name,

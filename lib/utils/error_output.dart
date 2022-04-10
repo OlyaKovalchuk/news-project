@@ -9,7 +9,6 @@ errorOutput({required String error, required BuildContext context}) {
       softWrap: true,
       textAlign: TextAlign.center,
     ),
-    // margin: EdgeInsets.all(10),
     behavior: SnackBarBehavior.floating,
     shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.all(Radius.circular(20)),
