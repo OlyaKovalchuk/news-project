@@ -5,14 +5,15 @@ import 'package:projects/auth/widgets/text_field_builder.dart';
 class EmailAndPasswordForm extends StatelessWidget {
   final TextEditingController controllerEmail;
   final TextEditingController controllerPassword;
-  final _focusNode = FocusNode();
+  final FocusNode focusNode;
   final GlobalKey<FormState> globalKey;
 
-  EmailAndPasswordForm(
+  const EmailAndPasswordForm(
       {Key? key,
       required this.globalKey,
       required this.controllerEmail,
-      required this.controllerPassword})
+      required this.controllerPassword,
+      required this.focusNode})
       : super(key: key);
 
   @override
@@ -22,13 +23,13 @@ class EmailAndPasswordForm extends StatelessWidget {
       child: Column(
         children: [
           TextFieldBuilder(
-            focusNode: _focusNode,
+            focusNode: focusNode,
             controller: controllerEmail,
             textInputType: TextInputType.emailAddress,
             hint: 'Email',
             onSubmit: (email) {
-              _focusNode.requestFocus();
-              _focusNode.nextFocus();
+              focusNode.requestFocus();
+              focusNode.nextFocus();
             },
             validator: (String? email) => Validators.validEmail(email),
           ),
@@ -40,8 +41,9 @@ class EmailAndPasswordForm extends StatelessWidget {
               controller: controllerPassword,
               textInputType: TextInputType.visiblePassword,
               hint: 'Password',
+              obscureText: true,
               onSubmit: (password) {
-                _focusNode.consumeKeyboardToken();
+                focusNode.consumeKeyboardToken();
               }),
         ],
       ),

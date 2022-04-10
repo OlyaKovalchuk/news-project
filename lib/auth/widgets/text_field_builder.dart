@@ -1,57 +1,79 @@
 import 'package:flutter/material.dart';
 
-class TextFieldBuilder extends StatelessWidget {
+// ignore: must_be_immutable
+class TextFieldBuilder extends StatefulWidget {
   final String? errorText;
   final FocusNode? focusNode;
   final TextEditingController controller;
-  final TextInputType textInputType;
+  final TextInputType? textInputType;
   final String hint;
-  final String? Function(String? val) validator;
+  final String? Function(String? val)? validator;
   final Function(String str)? onSubmit;
+  bool? obscureText;
 
- const TextFieldBuilder(
+  TextFieldBuilder(
       {Key? key,
-        this.errorText,
-        this.focusNode,
-        required this.controller,
-        required this.textInputType,
-        required this.hint,
-        required this.validator,
-        this.onSubmit})
+      this.errorText,
+      this.focusNode,
+      required this.controller,
+      this.textInputType,
+      required this.hint,
+      this.validator,
+      this.onSubmit,
+      this.obscureText})
       : super(key: key);
 
   @override
+  State<TextFieldBuilder> createState() => _TextFieldBuilderState();
+}
+
+class _TextFieldBuilderState extends State<TextFieldBuilder> {
+  @override
   Widget build(BuildContext context) {
     return TextFormField(
+      obscureText: widget.obscureText ?? false,
       autovalidateMode: AutovalidateMode.onUserInteraction,
-      validator: validator,
-      focusNode: focusNode,
-      onFieldSubmitted: onSubmit,
-      decoration: _inputDecoration(errorText: errorText, hint: hint),
+      validator: widget.validator,
+      focusNode: widget.focusNode,
+      onFieldSubmitted: widget.onSubmit,
+      decoration: InputDecoration(
+          suffixIcon: widget.obscureText != null
+              ? IconButton(
+                  icon: Icon(
+                    widget.obscureText!
+                        ? Icons.visibility_outlined
+                        : Icons.visibility_off_outlined,
+                    color: Colors.grey,
+                  ),
+                  onPressed: () {
+                    setState(() {
+                      widget.obscureText = !widget.obscureText!;
+                    });
+                  },
+                )
+              : null,
+          focusedBorder:
+              _outlineInputDecor(Theme.of(context).colorScheme.primary),
+          enabledBorder:
+              _outlineInputDecor(Theme.of(context).colorScheme.onSurface),
+          contentPadding: const EdgeInsets.only(left: 15),
+          hintText: widget.hint,
+          hintStyle: TextStyle(color: Theme.of(context).colorScheme.onSurface),
+          focusedErrorBorder: _outlineInputDecor(Colors.red),
+          errorBorder: _outlineInputDecor(Theme.of(context).colorScheme.error),
+          errorStyle: TextStyle(color: Theme.of(context).colorScheme.error),
+          errorText: widget.errorText),
       maxLines: 1,
       enableSuggestions: true,
-      style: const TextStyle(
-        fontSize: 15,
-        color: Colors.white,
-      ),
-      keyboardType: textInputType,
-      controller: controller,
+      style: Theme.of(context)
+          .textTheme
+          .bodyText1!
+          .copyWith(fontWeight: FontWeight.normal),
+      keyboardType: widget.textInputType ?? TextInputType.text,
+      controller: widget.controller,
     );
   }
 }
-
-InputDecoration _inputDecoration(
-    {required String? errorText, required String hint}) =>
-    InputDecoration(
-        focusedBorder: _outlineInputDecor(Colors.amberAccent),
-        enabledBorder: _outlineInputDecor(Colors.grey),
-        contentPadding: const EdgeInsets.only(left: 15),
-        hintText: hint,
-        hintStyle: const TextStyle(color: Colors.grey),
-        focusedErrorBorder: _outlineInputDecor(Colors.red),
-        errorBorder: _outlineInputDecor(Colors.red),
-        errorStyle:const TextStyle(color: Colors.red),
-        errorText: errorText);
 
 OutlineInputBorder _outlineInputDecor(Color color) {
   return OutlineInputBorder(

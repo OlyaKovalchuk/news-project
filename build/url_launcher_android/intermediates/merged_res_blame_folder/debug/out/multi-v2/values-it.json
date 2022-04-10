@@ -1,0 +1,34 @@
+{
+    "logs": [
+        {
+            "outputFile": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/incremental/mergeDebugResources/merged.dir/values-it/values-it.xml",
+            "map": [
+                {
+                    "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/values-it/values-it.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/Users/olga/Documents/projects/news-project/build/url_launcher_android/intermediates/merged_res/debug/values-it/values-it.xml",
+            "map": [
+                {
+                    "source": "/Users/olga/.gradle/caches/transforms-3/9afc84f93293d0d028fa4b468ffdb04e/transformed/core-1.6.0/res/values-it/values-it.xml",
+                    "from": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "100",
+                        "endOffsets": "151"
+                    }
+                }
+            ]
+        }
+    ]
+}
